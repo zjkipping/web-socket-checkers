@@ -1,0 +1,9 @@
+<h1>Landing Component</h1>
+<input [formControl]="username">
+<button [disabled]="!username.valid" (click)="login()">Set Username</button>
+<input [formControl]="roomName">
+<button [disabled]="!roomName.valid" (click)="createRoom()">Create Room</button>
+<div *ngFor="let lobby of lobbies | async">
+  <h2>{{lobby.name}}</h2>
+  <button (click)="joinRoom(lobby.id)">Join Lobby</button>
+</div>

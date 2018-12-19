@@ -62,3 +62,6 @@ typings/
 
 # next.js build output
 .next
+
+# the application config file
+config.ts
