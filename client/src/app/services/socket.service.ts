@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
@@ -9,10 +10,14 @@ import { LobbyList, Lobby } from '../types';
 @Injectable({
   providedIn: 'root'
 })
-export class SocketService {
-  lobbies: Observable<Lobby[]>
+export class SocketService implements OnDestroy {
+  lobbies: Observable<Lobby[]>;
+  inLobby = false;
+  setAuthSubscription: Subscription;
+  getErrorSubscription: Subscription;
+  lobbyJoinedSubscription: Subscription;
 
-  constructor(private io: Socket, private auth: AuthService) {
+  constructor(private io: Socket, private auth: AuthService, private router: Router) {
     this.lobbies = this.io.fromEvent<LobbyList>('lobbyList').pipe(
       map(lobbyList => {
         console.log('lobbies: ', lobbyList);
@@ -24,20 +29,30 @@ export class SocketService {
       })
     );
 
-    combineLatest(this.io.fromEvent('connect'), this.auth.userAuth)
-    .subscribe(([_res, username]) => {
-      console.log('WTF', username);
-      if (username) {
-        this.io.emit('setUser', username);
+    this.getErrorSubscription = this.io.fromEvent('error').subscribe((err: any) => {
+      console.log(err);
+      if (err.type === 'access_token_expired' || err.type === 'missing_access_token') {
+        this.auth.logoutUser();
       }
-    })
+    });
+
+    this.lobbyJoinedSubscription = this.io.fromEvent<Lobby>('lobbyJoined').subscribe((lobby: Lobby) => {
+      console.log('Lobby Created!');
+      this.router.navigate(['/lobby']);
+      this.inLobby = true;
+    });
+
+    this.setAuthSubscription = combineLatest(this.io.fromEvent('connect'), this.auth.userAuth).subscribe(([_res, userAuth]) => {
+      if (userAuth) {
+        this.io.emit('setAccessToken', userAuth.accessToken);
+      }
+    });
   }
 
-  setUser() {
-    if (this.auth.username) {
-      console.log('what');
-      this.io.emit('setUser', this.auth.username);
-    }
+  ngOnDestroy() {
+    this.getErrorSubscription.unsubscribe();
+    this.setAuthSubscription.unsubscribe();
+    this.lobbyJoinedSubscription.unsubscribe();
   }
 
   createRoom(name: string) {

@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./theme/sc-theme-mixins.scss";
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #262626;
+  color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.center-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ellipse-text {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.primary-text {
+  color: mat-color($sc-primary, 500) !important;
+}
+
+.accent-text {
+  color: mat-color($sc-accent, 500) !important;
+}
+
+.warn-text {
+  color: mat-color($sc-warn, 500) !important;
+}
+
+.success-text {
+  color: mat-color($sc-success, 500) !important;
+}
+
+.edit {
+  background: mat-color($sc-edit, 500) !important;
+}
+
+.success {
+  background: mat-color($sc-success, 500) !important;
+}
+
+.primary {
+  background: mat-color($sc-primary, 500) !important;
+}
+
+.accent {
+  background: mat-color($sc-accent, 500) !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Angular Material Overrides
+
+.mat-card .mat-card-header .mat-card-header-text {
+  margin: 0 auto;
+}

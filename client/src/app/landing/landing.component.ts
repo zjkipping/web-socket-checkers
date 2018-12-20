@@ -12,17 +12,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class LandingComponent{
   roomName: FormControl;
-  username: FormControl;
   lobbies: Observable<Lobby[]>;
 
   constructor(fb: FormBuilder, private socket: SocketService, private auth: AuthService) {
     this.roomName = fb.control('room#1', Validators.required);
-    this.username = fb.control('Outis', Validators.required);
     this.lobbies = this.socket.lobbies;
   }
 
   login() {
-    this.auth.login(this.username.value);
+
   }
 
   createRoom() {

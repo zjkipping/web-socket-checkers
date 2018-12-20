@@ -5,7 +5,7 @@ export default {
   accessLife: '10m',
   refreshSecret: '',
   refreshLife: '7d',
-  dbConfig: {
+  dbCredentials: {
     host: '',
     user: '',
     password: '',

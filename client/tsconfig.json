@@ -18,6 +18,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@types": ["src/app/types.ts"],
+      "@services/*": ["src/app/services/*"],
+    }
   }
 }

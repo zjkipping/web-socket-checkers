@@ -1,0 +1,18 @@
+.login-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+}
+
+.login-container {
+  min-height: 100vh;
+}
+
+.input-space {
+  margin-top: 10px;
+}
+
+.no-account {
+  margin-left: 7px;
+  text-align: left;
+}

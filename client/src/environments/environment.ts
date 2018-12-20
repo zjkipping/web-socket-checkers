@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  socketURL: 'http://localhost:8080',
-  apiURL: 'http://localhost:8080/api/'
+  SOCKET_URL: 'http://localhost:8080',
+  API_URL: 'http://localhost:8080/api'
 };
 
 /*

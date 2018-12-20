@@ -8,3 +8,7 @@ export interface Lobby {
   owner: string;
   created: number;
 }
+
+export interface UserAuth {
+  accessToken: string;
+}

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  socketURL: '',
-  apiURL: ''
+  SOCKET_URL: '',
+  API_URL: ''
 };
