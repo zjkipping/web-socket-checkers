@@ -1,7 +1,14 @@
-<h1>Landing Component</h1>
-<input [formControl]="roomName">
-<button [disabled]="!roomName.valid" (click)="createRoom()">Create Room</button>
-<div *ngFor="let lobby of lobbies | async">
-  <h2>{{lobby.name}}</h2>
-  <button (click)="joinRoom(lobby.id)">Join Lobby</button>
-</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Angular Checkers</span>
+    <button mat-button class="nav-button" routerLinkActive="accent-text" routerLink="/lobbies">Lobbies</button>
+    <button mat-button class="nav-button" routerLinkActive="accent-text" disabled routerLink="/stats">Stats</button>
+    <span class="spacer"></span>
+    <button mat-button class="nav-button" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Log Out</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

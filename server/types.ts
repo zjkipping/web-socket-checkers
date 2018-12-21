@@ -41,6 +41,9 @@ export interface Lobby {
   name: string;
   owner: string;
   created: number;
+  status: string;
+  players: any[];
+  spectators: any[];
 }
 
 export interface UserList {

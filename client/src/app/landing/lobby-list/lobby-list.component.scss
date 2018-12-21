@@ -1,0 +1,21 @@
+.max-width {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0px auto;
+}
+
+.empty-table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+}
+
+// Material Overrides
+th.mat-header-cell {
+  text-align: center;
+}
+
+.action-td {
+  height: 48px;
+}

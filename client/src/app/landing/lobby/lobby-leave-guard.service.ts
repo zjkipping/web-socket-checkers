@@ -13,7 +13,6 @@ export class LobbyLeaveGuardService implements CanDeactivate<LobbyComponent> {
   constructor(private socket: SocketService, private dialog: MatDialog) { }
 
   canDeactivate(): Observable<boolean> | boolean {
-    console.log('um yo wtf', this.socket.inLobby);
     if (this.socket.inLobby) {
       // return this.dialog.open(ConfirmCancelDialogComponent).afterClosed();
       return window.confirm(

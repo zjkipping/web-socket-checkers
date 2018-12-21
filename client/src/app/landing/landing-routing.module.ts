@@ -4,14 +4,16 @@ import { LandingComponent } from './landing.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { LobbyLeaveGuardService } from './lobby/lobby-leave-guard.service';
 import { LobbyEnterGuardService } from './lobby/lobby-enter-guard.service';
+import { LobbyListComponent } from './lobby-list/lobby-list.component';
 
 const routes: Routes = [
   {
+    component: LandingComponent,
     path: '',
     children: [
-      { path: 'landing', component: LandingComponent },
+      { path: 'lobbies', component: LobbyListComponent },
       { path: 'lobby', component: LobbyComponent, canDeactivate: [LobbyLeaveGuardService], canActivate: [LobbyEnterGuardService] },
-      { path: '**', redirectTo: 'landing' }
+      { path: '**', redirectTo: 'lobbies' }
     ]
   }
 ];

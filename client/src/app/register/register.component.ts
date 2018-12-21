@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective, FormControl, NgForm } from '@angular/forms';
-import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material';
+
+import { AuthService } from '@services/auth.service';
 
 class PasswordValidationErrorMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
